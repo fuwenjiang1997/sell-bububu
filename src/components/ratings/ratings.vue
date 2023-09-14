@@ -82,6 +82,7 @@ import SpliceLine from 'components/spliceline/spliceline'
 import RatingSelect from 'components/ratingselect/ratingselect'
 import { formatDate } from 'common/js/date'
 import BScroll from '@better-scroll/core'
+import staticData from '../../../static/data.json'
 
 const ERR_OK = 0
 // const POSITIVE = 0
@@ -138,15 +139,17 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://selladmin.bfclouds.cn/ratings.php', {}, { emulateJSON: true }).then((res) => {
-      res = res.body
-      if (res.errno === ERR_OK) {
-        this.ratings = res.data
-        this._inintScroll()
-      }
-    }).catch((res) => {
-      this.ratings = []
-    })
+    // this.$http.get('http://selladmin.bfclouds.cn/ratings.php', {}, { emulateJSON: true }).then((res) => {
+    //   res = res.body
+    //   if (res.errno === ERR_OK) {
+    //     this.ratings = res.data
+    //     this._inintScroll()
+    //   }
+    // }).catch((res) => {
+    //   this.ratings = []
+    // })
+    this.ratings = staticData.ratings
+    this._inintScroll()
   },
   components: {
     Star,

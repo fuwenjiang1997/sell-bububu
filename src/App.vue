@@ -20,7 +20,7 @@
 <script type="text/ecmascript-6">
 import header from 'components/header/header.vue'
 import { urlParse } from 'common/js/util.js'
-import staticData from 'static/data.json'
+import staticData from '../static/data.json'
 const ERR_OK = 0
 
 export default {

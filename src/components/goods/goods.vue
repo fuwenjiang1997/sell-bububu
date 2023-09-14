@@ -75,6 +75,7 @@ import ShoopCart from 'components/shoopcart/shoopcart.vue'
 import CartControl from 'components/cartcontrol/cartcontrol.vue'
 import Food from 'components/food/food.vue'
 import BScroll from '@better-scroll/core'
+import staticData from '../../../static/data.json'
 
 const ERRNO_OK = 0
 
@@ -159,18 +160,24 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://selladmin.bfclouds.cn/goods.php', {}, { emulateJSON: true }).then((res) => {
-      res = res.body
-      if (res.errno === ERRNO_OK) {
-        this.goods = res.data
-        // 处理DOM时一定要保证dom已经渲染
-        this.$nextTick(() => {
-          this._initScroll()
-          this._calculateHeight()
-        })
-      }
-    }).catch((res) => {
-      this.goods = []
+    // this.$http.get('http://selladmin.bfclouds.cn/goods.php', {}, { emulateJSON: true }).then((res) => {
+    //   res = res.body
+    //   if (res.errno === ERRNO_OK) {
+    //     this.goods = res.data
+    //     // 处理DOM时一定要保证dom已经渲染
+    //     this.$nextTick(() => {
+    //       this._initScroll()
+    //       this._calculateHeight()
+    //     })
+    //   }
+    // }).catch((res) => {
+    //   this.goods = []
+    // })
+
+    this.goods = staticData.goods
+    this.$nextTick(() => {
+      this._initScroll()
+      this._calculateHeight()
     })
   },
   components: {
