@@ -20,6 +20,7 @@
 <script type="text/ecmascript-6">
 import header from 'components/header/header.vue'
 import { urlParse } from 'common/js/util.js'
+import staticData from 'static/data.json'
 const ERR_OK = 0
 
 export default {
@@ -34,15 +35,16 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://selladmin.bfclouds.cn/seller.php?id=' + this.seller.id, {}, { emulateJSON: true }).then((res) => {
-      res = res.body
-      if (res.errno === ERR_OK) {
-        // 将获取的数据与现有的seller已有的id结合成新对象
-        this.seller = Object.assign({}, this.seller, res.data)
-      }
-    }).catch((res) => {
-      this.seller = {}
-    })
+    // this.$http.get('http://selladmin.bfclouds.cn/seller.php?id=' + this.seller.id, {}, { emulateJSON: true }).then((res) => {
+    //   res = res.body
+    //   if (res.errno === ERR_OK) {
+    //     // 将获取的数据与现有的seller已有的id结合成新对象
+    //     this.seller = Object.assign({}, this.seller, res.data)
+    //   }
+    // }).catch((res) => {
+    //   this.seller = {}
+    // })
+    this.seller = staticData.seller
   },
   components: {
     Header: header
